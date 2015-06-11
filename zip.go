@@ -6,6 +6,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
+	"time"
+	"strconv"
 )
 
 var key string
@@ -41,7 +44,7 @@ func getDistance(fromZip string, toZip string) float64 {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(distance.Distance)
+	//fmt.Println(distance.Distance)
 	return distance.Distance
 }
 
@@ -57,7 +60,13 @@ func zipSubmitHandler(w http.ResponseWriter, r *http.Request) {
 	fromZip := r.FormValue("fromZip")
 	toZip := r.FormValue("toZip")
 	fmt.Println(fromZip)
-	fmt.Println(toZip)
+	fmt.Println(strings.Fields(toZip))
+	for _, zip := range strings.Fields(toZip) {
+		fmt.Printf(zip + " : ")
+		distance := getDistance(fromZip, zip)
+		fmt.Printf(strconv.FormatFloat(distance, 'f', -1, 64) + " miles.\n")
+		time.Sleep(1 * time.Second)
+	}
 }
 
 // func main() {
