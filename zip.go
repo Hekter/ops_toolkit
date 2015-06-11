@@ -65,7 +65,7 @@ func zipSubmitHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf(zip + " : ")
 		distance := getDistance(fromZip, zip)
 		fmt.Printf(strconv.FormatFloat(distance, 'f', -1, 64) + " miles.\n")
-		time.Sleep(1 * time.Second)
+		time.Sleep(0.25 * time.Second)
 	}
 }
 
