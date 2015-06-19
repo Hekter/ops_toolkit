@@ -17,6 +17,10 @@ type distanceResponse struct {
 	Distance float64
 }
 
+type zipRenderContext struct {
+	distanceStrings []string
+}
+
 func loadKey() string {
 	data, err := ioutil.ReadFile("zip_api.json")
 	if err != nil {
@@ -68,9 +72,3 @@ func zipSubmitHandler(w http.ResponseWriter, r *http.Request) {
 		time.Sleep(0.25 * time.Second)
 	}
 }
-
-// func main() {
-// 	loadKey()
-// 	response := getDistance("18848", "94610")
-// 	fmt.Println(response)
-// }
